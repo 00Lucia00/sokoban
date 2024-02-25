@@ -40,7 +40,7 @@ while not game.is_completed:
 
 
 
-'''if __name__ == '__main__':
+'''
 
     game = Sokoban(game_board)
     game.print_board()

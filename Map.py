@@ -6,7 +6,7 @@ class Map:
 
     def display(self):
         for row in self.layout:
-            print("".join(row))
+            print(" ".join(row))
 
     def is_wall(self, row, col):
         return self.layout[row][col] == 'W'
@@ -21,6 +21,14 @@ class Map:
         for row in self.layout:
             if 'B' in row:
                 return False
+        return True
+    
+    def check_completion(self):
+        for row in range(len(self.layout)):
+            for col in range(len(self.layout[row])):
+                if self.layout[row][col] == 'X':
+                    if self.layout[row][col] != 'B':
+                        return False
         return True
 
 
