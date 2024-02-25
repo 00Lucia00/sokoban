@@ -3,60 +3,44 @@
 # The second aim is to use pygame to create an interfase
 # The thered aim is to create an AI that can solve the game
 
-class Sokoban:
-    def __init__(self, board):
-        self.board = board
-
-    def print_board(self):
-        for row in self.board:
-            print(" ".join(row))
-
-    def find_player(self):
-        for row in range(len(self.board)):
-            for col in range(len(self.board[row])):
-                if self.board[row][col] == 'P':
-                    return row, col
-
-        return -1, -1
-
-    def move_player(self, direction):
-        player_row, player_col = self.find_player()
-        new_row, new_col = player_row, player_col
-
-        if direction == 'up':
-            new_row -= 1
-        elif direction == 'down':
-            new_row += 1
-        elif direction == 'left':
-            new_col -= 1
-        elif direction == 'right':
-            new_col += 1
-
-        if self.board[new_row][new_col] != 'W':
-            self.board[player_row][player_col] = ' '
-            self.board[new_row][new_col] = 'P'
-
-    def move_up(self):
-        self.move_player('up')
-
-    def move_down(self):
-        self.move_player('down')
-
-    def move_left(self):
-        self.move_player('left')
-
-    def move_right(self):
-        self.move_player('right')
+from Map import Map
+from GameLogic import SokobanGame
 
 game_board = [
-    ['W', 'W', 'W', 'W', 'W'],
-    ['W', 'P', 'T', ' ', 'W'],
-    ['W', ' ', ' ', ' ', 'W'],
-    ['W', ' ', 'X', ' ', 'W'],
-    ['W', 'W', 'W', 'W', 'W']
+    ['W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'],
+    ['W', 'P', ' ', ' ', 'W', ' ', ' ', 'X', 'W'],
+    ['W', ' ', ' ', 'B', 'W', ' ', ' ', ' ', 'W'],
+    ['W', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'W'],
+    ['W', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'W'],
+    ['W', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'W'],
+    ['W', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'W'],
+    ['W', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'W'],
+    ['W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W']
 ]
 
-if __name__ == '__main__':
+map_obj = Map(game_board)
+game = SokobanGame(map_obj, 1, 1)
+
+game.display()
+
+while not game.is_completed:
+    direction = input("Enter direction (W/A/S/D): ").upper()
+    if direction == 'W':
+        game.move_player(-1, 0)
+    elif direction == 'A':
+        game.move_player(0, -1)
+    elif direction == 'S':
+        game.move_player(1, 0)
+    elif direction == 'D':
+        game.move_player(0, 1)
+    else:
+        print("Invalid input!")
+
+
+
+
+
+'''if __name__ == '__main__':
 
     game = Sokoban(game_board)
     game.print_board()
@@ -71,4 +55,4 @@ if __name__ == '__main__':
     elif direction == 'right':
         game.move_right()
 
-    game.print_board()
+    game.print_board()'''
