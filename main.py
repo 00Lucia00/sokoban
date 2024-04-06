@@ -5,18 +5,9 @@
 
 from Map import Map
 from GameLogic import SokobanGame
+from Levels import Level
 
-game_board = [
-    ['W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W'],
-    ['W', 'P', ' ', ' ', 'W', ' ', ' ', 'X', 'W'],
-    ['W', ' ', ' ', 'B', 'W', ' ', ' ', ' ', 'W'],
-    ['W', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'W'],
-    ['W', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'W'],
-    ['W', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'W'],
-    ['W', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'W'],
-    ['W', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'W'],
-    ['W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W']
-]
+game_board = Level.game_board1
 
 map_obj = Map(game_board)
 game = SokobanGame(map_obj, 1, 1)
